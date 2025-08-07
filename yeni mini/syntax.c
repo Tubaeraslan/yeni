@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:36:15 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/05 17:39:29 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:48:58 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	is_valid_syntax(char *input)
 		return (0);
 	return (1);
 }
+
 static int	is_invalid_redirect(char *input, int i)
 {
 	int	j;

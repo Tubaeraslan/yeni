@@ -6,18 +6,18 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:18:28 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 17:05:11 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:37:48 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int add_arg(char **args, int index, char *token)
+static int	add_arg(char **args, int index, char *token)
 {
 	args[index] = mem_absorb(ft_strdup(token));
 	if (!args[index])
-		return 0;
-	return 1;
+		return (0);
+	return (1);
 }
 
 static int	check_and_handle_redirect(t_mini *mini, char **tokens, int *i)
@@ -36,7 +36,7 @@ static int	check_and_handle_redirect(t_mini *mini, char **tokens, int *i)
 	return (0);
 }
 
-static int	handle_tokens(t_mini *mini, char **tmp_args, int *count, int *i)
+int	handle_tokens(t_mini *mini, char **tmp_args, int *count, int *i)
 {
 	char	*token;
 	int		redirect_result;
@@ -80,41 +80,14 @@ static char	**alloc_args(int max_count)
 
 void	parsing(t_mini *mini)
 {
-	int		i;
-	int		count;
 	char	**tmp_args;
-	int		result;
 
-	i = 0;
-	count = 0;
 	tmp_args = alloc_args(mini->token_count);
 	if (!tmp_args)
 	{
 		mini->last_exit_code = 1;
 		return ;
 	}
-	while (i < mini->token_count)
-	{
-		result = handle_tokens(mini, tmp_args, &count, &i);
-		if (result == 1)
-			continue ;
-		if (result == 2 || result == -1)
-			break ;
-	}
-	tmp_args[count] = NULL;
-	
-	// Set cmd to the first argument (command name)
-	if (count > 0 && tmp_args[0])
-	{
-		mini->cmd = mem_absorb(ft_strdup(tmp_args[0]));
-	}
-	else
-	{
-		mini->cmd = NULL;
-	}
-	
-	// Set args array for execve
+	parse_tokens_and_fill_args(mini, tmp_args);
 	mini->args = tmp_args;
-	
-	//update_args_and_cmd(mini, tmp_args, count);
 }

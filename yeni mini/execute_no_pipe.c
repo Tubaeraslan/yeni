@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:07:42 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 16:15:23 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:58:54 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	execute_child_process(t_mini *mini)
 	{
 		ft_putstr_fd(mini->cmd, 2);
 		ft_putstr_fd(": command not found\n", 2);
-		mem_free();
 		ft_exit_gc(127);
 	}
 	check_executable(path, &st, mini);
@@ -38,11 +37,7 @@ void	run_child(t_mini *mini)
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (handle_redirections(mini) == -1)
-	{
-		//mem_free();
 		ft_exit_gc(1);
-	}
 	execute_child_process(mini);
-	mem_free();
 	ft_exit_gc(1);
 }

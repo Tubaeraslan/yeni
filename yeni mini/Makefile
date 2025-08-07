@@ -11,7 +11,7 @@ SRC = main.c parse_input.c syntax.c pipe_syntax.c error.c expand.c expand_utils.
 	parsing_utils.c mem_utils.c heredoc_check.c execute_commands.c execute_no_pipe.c \
 	executable.c built-in.c redirect.c cd.c cd_utils.c env_utils.c pwd.c env.c echo.c \
 	export.c export_utils.c unset.c exit.c exit_utils.c execute_with_pipe.c stdin_utils.c \
-	pipe_child.c signal.c
+	pipe_child.c signal.c execute_utils.c init.c garbage_utils.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,28 +6,19 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:11:41 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 17:43:33 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:56:39 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*path_finder(char *cmd, char **env)
+static char	*find_executable_path(char **paths, char *cmd)
 {
-	char	**paths;
 	char	*path;
 	char	*temp;
 	int		i;
 	int		j;
 
-	i = 0;
-	while (env[i] && ft_strncmp(env[i], "PATH=", 5) != 0)
-		i++;
-	if (!env[i])
-		return (NULL);
-	paths = ft_split(env[i] + 5, ':');
-	if (!paths)
-		return (NULL);
 	i = 0;
 	while (paths[i])
 	{
@@ -35,7 +26,6 @@ char	*path_finder(char *cmd, char **env)
 		path = mem_absorb(ft_strjoin(temp, cmd));
 		if (access(path, X_OK) == 0)
 		{
-			// Free the paths array and its elements
 			j = 0;
 			while (paths[j])
 			{
@@ -47,7 +37,27 @@ char	*path_finder(char *cmd, char **env)
 		}
 		i++;
 	}
-	// Free the paths array and its elements
+	return (NULL);
+}
+
+char	*path_finder(char *cmd, char **env)
+{
+	char	**paths;
+	int		i;
+	int		j;
+	char	*path;
+
+	i = 0;
+	while (env[i] && ft_strncmp(env[i], "PATH=", 5) != 0)
+		i++;
+	if (!env[i])
+		return (NULL);
+	paths = ft_split(env[i] + 5, ':');
+	if (!paths)
+		return (NULL);
+	path = find_executable_path(paths, cmd);
+	if (path)
+		return (path);
 	j = 0;
 	while (paths[j])
 	{

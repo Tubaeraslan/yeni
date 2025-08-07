@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:54:55 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 16:15:23 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:50:29 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,29 @@ int	is_built(char *arg)
 	return (0);
 }
 
+static int	execute_builtin_redir(t_mini *mini, int saved_in, int saved_out)
+{
+	if (handle_redirections(mini) == -1)
+	{
+		dup2(saved_in, STDIN_FILENO);
+		dup2(saved_out, STDOUT_FILENO);
+		close(saved_in);
+		close(saved_out);
+		mini->last_exit_code = 1;
+		return (1);
+	}
+	if (ft_strncmp(mini->cmd, "exit", 5) == 0)
+	{
+		dup2(saved_in, STDIN_FILENO);
+		dup2(saved_out, STDOUT_FILENO);
+		close(saved_in);
+		close(saved_out);
+		mini->last_exit_code = ft_exit(mini);
+		return (1);
+	}
+	return (0);
+}
+
 void	execute_builtin(t_mini *mini)
 {
 	int	saved_stdin;
@@ -92,24 +115,8 @@ void	execute_builtin(t_mini *mini)
 
 	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
-	if (handle_redirections(mini) == -1)
-	{
-		dup2(saved_stdin, STDIN_FILENO);
-		dup2(saved_stdout, STDOUT_FILENO);
-		close(saved_stdin);
-		close(saved_stdout);
-		mini->last_exit_code = 1;
+	if (execute_builtin_redir(mini, saved_stdin, saved_stdout))
 		return ;
-	}
-	if (ft_strncmp(mini->cmd, "exit", 5) == 0)
-	{
-		dup2(saved_stdin, STDIN_FILENO);
-		dup2(saved_stdout, STDOUT_FILENO);
-		close(saved_stdin);
-		close(saved_stdout);
-		mini->last_exit_code = ft_exit(mini);
-		return ;
-	}
 	execute_b(mini);
 	dup2(saved_stdin, STDIN_FILENO);
 	dup2(saved_stdout, STDOUT_FILENO);

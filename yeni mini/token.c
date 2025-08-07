@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:38:18 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 13:57:56 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:49:32 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	process_char(t_tokenizer *tk, t_mini *mini)
 	tk->buffer[(tk->j)++] = src[(*i)++];
 }
 
-void token(t_mini *mini)
+void	token(t_mini *mini)
 {
 	t_tokenizer	*tk;
 

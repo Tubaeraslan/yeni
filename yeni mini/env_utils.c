@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:08:20 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 14:35:20 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:53:44 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,56 +63,48 @@ char	**sort_env(char **env)
 	return (sorted);
 }
 
-char **add_to_env(char **env, char *new_var)
+char	**add_to_env(char **env, char *new_var)
 {
-	int i = 0;
-	char **new_env;
+	int		i;
+	char	**new_env;
 
-	// Mevcut ortamın eleman sayısını say
+	i = 0;
 	while (env && env[i])
 		i++;
-
-	// Yeni ortam için 1 fazla yer ayır (yeni değişken + NULL)
 	new_env = mem_absorb((char **)malloc(sizeof(char *) * (i + 2)));
 	if (!new_env)
 		return (NULL);
-
-	// Eski ortamı kopyala
 	i = 0;
 	while (env && env[i])
 	{
 		new_env[i] = mem_absorb(ft_strdup(env[i]));
 		i++;
 	}
-
-	// Yeni değişkeni ekle
 	new_env[i] = mem_absorb(ft_strdup(new_var));
 	new_env[i + 1] = NULL;
-
-
 	return (new_env);
 }
 
-void update_env(char ***envp, char *arg)
+void	update_env(char ***envp, char *arg)
 {
-	int i = 0;
-	int key_len = 0;
-	char *key;
+	int		i;
+	int		key_len;
+	char	*key;
 
+	i = 0;
+	key_len = 0;
 	while (arg[key_len] && arg[key_len] != '=')
 		key_len++;
 	key = mem_absorb(ft_substr(arg, 0, key_len));
-
 	while ((*envp)[i])
 	{
-		if (ft_strncmp((*envp)[i], key, key_len) == 0 && (*envp)[i][key_len] == '=')
+		if (ft_strncmp((*envp)[i], key, key_len) == 0
+			&& (*envp)[i][key_len] == '=')
 		{
 			(*envp)[i] = mem_absorb(ft_strdup(arg));
-			return;
+			return ;
 		}
 		i++;
 	}
-
-	// yoksa yeni değişkeni ekle
-	*envp = add_to_env(*envp, arg); // realloc + strdup ile eklenir
+	*envp = add_to_env(*envp, arg);
 }

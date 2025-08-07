@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 18:15:13 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 18:30:40 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:04:55 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int	is_heredoc(char *input)
 
 void	check_heredoc_and_setup(t_mini *mini)
 {
-	t_mini	*tmp;
+	t_mini		*tmp;
 	t_heredoc	*heredocs;
 
 	tmp = mini;

@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:39:45 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 15:41:11 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:54:36 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	handle_fork_error(t_mini *mini)
 	mem_free();
 	ft_exit_gc(1);
 }
+
 void	print_err_and_exit(char *path, char *msg, int code, t_mini *mini)
 {
 	(void)mini;
@@ -33,4 +34,3 @@ void	print_err_and_exit(char *path, char *msg, int code, t_mini *mini)
 	ft_putstr_fd(msg, 2);
 	ft_exit_gc(code);
 }
-

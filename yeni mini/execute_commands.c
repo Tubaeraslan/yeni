@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 12:52:39 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 18:40:01 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:58:10 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ static void	set_exit_code(t_mini *mini, int status)
 		mini->last_exit_code = WEXITSTATUS(status);
 }
 
-void execute_a_command(t_mini *mini)
+void	execute_a_command(t_mini *mini)
 {
-	pid_t pid;
-	int status;
+	pid_t	pid;
+	int		status;
 
 	if (!mini || !mini->cmd)
 		return ;
 	if (is_built(mini->cmd))
 	{
 		execute_builtin(mini);
-		return;
+		return ;
 	}
 	pid = fork();
 	if (pid == -1)
@@ -63,7 +63,7 @@ void execute_a_command(t_mini *mini)
 	else
 	{
 		waitpid(pid, &status, 0);
-		set_exit_code(mini, status);	
+		set_exit_code(mini, status);
 	}
 }
 
@@ -71,7 +71,6 @@ int	execute_many_commands(t_mini *mini)
 {
 	int	cmd_count;
 	int	exit_code;
-	//int	validation_result;
 
 	cmd_count = count_commands(mini);
 	mini->pids = mem_malloc(sizeof(pid_t) * cmd_count);
@@ -81,18 +80,13 @@ int	execute_many_commands(t_mini *mini)
 		return (perror("malloc"), EXIT_FAILURE);
 	}
 	exit_code = execute_pipeline(mini, mini->pids);
-	// if (mini->pids)
-	// {	
-	// 	free(mini->pids);
-	// 	mini->pids = NULL;
-	// }
 	if (exit_code == -1)
 		return (EXIT_FAILURE);
 	else
 		return (exit_code);
 }
 
-void execute_commands(t_mini *mini)
+void	execute_commands(t_mini *mini)
 {
 	t_mini	*current;
 
@@ -103,8 +97,5 @@ void execute_commands(t_mini *mini)
 			execute_a_command(current);
 	}
 	else
-	{
-		// For pipes, always execute - individual command errors are handled per command
 		mini->last_exit_code = execute_many_commands(mini);
-	}
 }

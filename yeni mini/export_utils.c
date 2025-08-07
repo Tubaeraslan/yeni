@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:26:16 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 14:38:07 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:04:02 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	is_in_list(char **list, char *var)
 	{
 		if (!list[i])
 			break ;
-		if (ft_strncmp(list[i], var, ft_strlen(var)) == 0 && ft_strlen(list[i]) == ft_strlen(var))
+		if (ft_strncmp(list[i], var, ft_strlen(var)) == 0
+			&& ft_strlen(list[i]) == ft_strlen(var))
 			return (1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:28:19 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 18:12:15 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:45:08 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,36 +69,14 @@ static void	handle_child(t_mini *mini, int prev_fd, int *fd)
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (mini->parsing_error)
-	{
 		ft_exit_gc(1);
-	}
-	
-	// Set up pipe file descriptors first
 	setup_stdout(mini, fd);
-	
-	// Handle stdin setup without redirection
 	if (prev_fd != -1)
-	{
-		if (dup2(prev_fd, STDIN_FILENO) == -1)
-		{
-			perror("dup2 prev_fd");
-			ft_exit_gc(1);
-		}
-		close(prev_fd);
-	}
-	
-	// Now handle redirections (this may override the stdin setup above)
+		closer(prev_fd);
 	if (handle_redirections(mini) == -1)
-	{
 		ft_exit_gc(1);
-	}
-	
-	// If there's no command (e.g., heredoc only), just exit successfully
 	if (!mini->cmd)
-	{
 		ft_exit_gc(0);
-	}
-	
 	if (is_built(mini->cmd))
 	{
 		execute_builtin(mini);

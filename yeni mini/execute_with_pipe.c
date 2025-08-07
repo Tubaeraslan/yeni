@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:23:41 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 18:18:39 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:02:17 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	count_commands(t_mini *mini)
 int	validate_all_commands(t_mini *mini)
 {
 	t_mini	*current;
-	char		*path;
+	char	*path;
 
 	current = mini;
 	while (current)
@@ -98,7 +98,6 @@ static int	wait_for_children(pid_t *pids, int count, pid_t last_pid)
 
 int	execute_pipeline(t_mini *mini, pid_t *pids)
 {
-	int		fd[2];
 	int		prev_fd;
 	int		i;
 	pid_t	last_pid;
@@ -108,26 +107,9 @@ int	execute_pipeline(t_mini *mini, pid_t *pids)
 	last_pid = -1;
 	while (mini)
 	{
-		if (mini->next && pipe(fd) == -1)
-			return (perror("pipe"), -1);
-		if (mini->next)
-			pids[i++] = handle_fork(mini, prev_fd, fd);
-		else
-			pids[i++] = handle_fork(mini, prev_fd, NULL);
+		if (pipe_fork_step(mini, pids, &i, &prev_fd) == -1)
+			return (-1);
 		last_pid = pids[i - 1];
-		if (prev_fd != -1)
-			close(prev_fd);
-		if (mini->next)
-		{
-			close(fd[1]);
-			prev_fd = fd[0];
-		}
-		else
-		{
-			prev_fd = -1;
-			if (prev_fd != -1)
-				close(prev_fd);
-		}
 		mini = mini->next;
 	}
 	if (prev_fd != -1)
