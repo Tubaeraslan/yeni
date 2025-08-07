@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:28:19 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:45:08 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 20:41:12 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,25 @@ void	exec_external_or_exit(t_mini *mini)
 
 static void	handle_child(t_mini *mini, int prev_fd, int *fd)
 {
-	int	i;
+	   int     i;
 
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
-	if (mini->parsing_error)
-		ft_exit_gc(1);
-	setup_stdout(mini, fd);
-	if (prev_fd != -1)
-		closer(prev_fd);
-	if (handle_redirections(mini) == -1)
-		ft_exit_gc(1);
-	if (!mini->cmd)
-		ft_exit_gc(0);
-	if (is_built(mini->cmd))
-	{
-		execute_builtin(mini);
-		i = mini->last_exit_code;
-		ft_exit_gc(i);
-	}
-	exec_external_or_exit(mini);
+	   signal(SIGINT, SIG_DFL);
+	   signal(SIGQUIT, SIG_DFL);
+	   if (mini->parsing_error)
+			   ft_exit_gc(1);
+	   setup_stdout(mini, fd);
+	   setup_stdin(mini, prev_fd); // stdin yönlendirmesi sadece burada yapılacak
+	   if (handle_redirections(mini) == -1)
+			   ft_exit_gc(1);
+	   if (!mini->cmd)
+			   ft_exit_gc(0);
+	   if (is_built(mini->cmd))
+	   {
+			   execute_builtin(mini);
+			   i = mini->last_exit_code;
+			   ft_exit_gc(i);
+	   }
+	   exec_external_or_exit(mini);
 }
 
 pid_t	handle_fork(t_mini *mini, int prev_fd, int *fd)

@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:46:18 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:11:23 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 21:00:55 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ int	g_signal_status = 0;
 
 void	ft_exit_gc(int status)
 {
+	int fd;
+
+	fd = 3;
+	while (fd < 1024)
+	{
+		close(fd);
+		fd++;
+	}
 	mem_free();
 	exit(status);
 }
@@ -63,6 +71,7 @@ static void	minishell_loop(t_mini *mini)
 {
 	while (1)
 	{
+		handle_signals();
 		g_signal_status = 0;
 		reset_mini_for_new_command(mini);
 		if (read_and_prepare_input(mini))
@@ -87,7 +96,6 @@ int	main(int argc, char **argv, char **envp)
 	mini = mem_malloc(sizeof(t_mini));
 	data = mem_malloc(sizeof(t_data));
 	init_minishell(mini, data, envp);
-	handle_signals();
 	minishell_loop(mini);
 	ft_close_fds(mini);
 	mem_free();

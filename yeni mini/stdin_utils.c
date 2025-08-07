@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:31:34 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:48:24 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/07 20:45:10 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static void	handle_heredoc_setup(t_mini *mini)
 {
-	if (dup2(mini->heredoc_fd, STDIN_FILENO) == -1)
-	{
-		perror("dup2 heredoc");
-		ft_exit_gc(1);
-	}
-	close(mini->heredoc_fd);
+	   if (dup2(mini->heredoc_fd, STDIN_FILENO) == -1)
+	   {
+			   perror("dup2 heredoc");
+			   ft_exit_gc(1);
+	   }
+	   close(mini->heredoc_fd);
+	   mini->heredoc_fd = -1;
 }
 
 static void	handle_infile_setup(t_mini *mini)

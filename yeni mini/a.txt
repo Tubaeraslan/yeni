@@ -1,0 +1,17 @@
+static int	cd_prepare(t_mini *mini, char *cwd, char **oldpwd, char **path)
+	size_t	cwd_size;
+	cwd_size = 1024;
+	if (get_oldpwd(mini, cwd, cwd_size, oldpwd))
+static int	cd_change_dir(t_mini *mini, char *path, char **newcwd)
+	char	cwd[1024];
+	if (!getcwd(cwd, sizeof(cwd)))
+		perror("getcwd");
+	*newcwd = mem_absorb(ft_strdup(cwd));
+	if (!*newcwd)
+static int	update_pwd_oldpwd_env(t_mini *mini, char *oldpwd, char *newcwd)
+	pwd_var = mem_absorb(ft_strjoin("PWD=", newcwd));
+	char	*newcwd;
+	if (cd_change_dir(mini, path, &newcwd))
+	if (update_pwd_oldpwd_env(mini, oldpwd, newcwd))
+	char	cwd[1024];
+	if (cd_prepare(mini, cwd, &oldpwd, &path))
