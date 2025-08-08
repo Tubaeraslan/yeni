@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:46:18 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 21:00:55 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 17:23:00 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	g_signal_status = 0;
 
 void	ft_exit_gc(int status)
 {
-	int fd;
+	int	fd;
 
 	fd = 3;
 	while (fd < 1024)

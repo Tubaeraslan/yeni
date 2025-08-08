@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:48:59 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/08 16:13:14 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 17:32:00 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_tokenizer
 	char		char_quote;
 	char		buffer[1024];
 	const char	*src;
-	int             pending_empty_token;
+	int			pending_empty_token;
 }	t_tokenizer;
 
 typedef struct s_heredoc

@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 18:20:59 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/08 15:10:53 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 17:22:36 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	child_heredoc_process(t_mini *mini, char *limiter, int pipe_fd[2])
 	set_signal(0);
 	heredoc_loop_custom(limiter, pipe_fd[1]);
 	close(pipe_fd[1]);
-
 	ft_exit_gc(0);
 }
 
