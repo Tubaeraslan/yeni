@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:51:43 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 12:25:45 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:49:17 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,6 @@ void	copy_env_value_to_input(t_expand *ex, char *value)
 	m = 0;
 	while (value[m])
 		ex->new_input[ex->j++] = value[m++];
-}
-
-void	expand_pid(t_expand *ex)
-{
-	char	*pid_str;
-	int		m;
-
-	pid_str = mem_absorb(ft_itoa(getpid()));
-	if (!pid_str)
-		return ;
-	m = 0;
-	while (pid_str[m])
-		ex->new_input[ex->j++] = pid_str[m++];
-	ex->i++;
 }
 
 int	read_varname(char *input, int *i, char *varname)

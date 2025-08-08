@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 18:20:59 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 20:46:36 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:10:53 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ static int	fork_and_handle_heredoc(t_mini *mini, char *limiter)
 	if (pipe(pipe_fd) == -1)
 	{
 		perror("pipe");
-		mem_free();
 		ft_exit_gc(1);
 	}
 	pid = fork();
 	if (pid < 0)
 	{
 		perror("fork");
-		mem_free();
 		ft_exit_gc(1);
 	}
 	if (pid == 0)

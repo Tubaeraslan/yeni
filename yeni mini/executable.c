@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:11:41 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 12:56:39 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:10:38 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,18 @@ void	check_executable(char *path, struct stat *st, t_mini *mini)
 	{
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		mem_free();
 		ft_exit_gc(127);
 	}
 	if (S_ISDIR(st->st_mode))
 	{
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": Is a directory\n", 2);
-		mem_free();
 		ft_exit_gc(126);
 	}
 	if (!(st->st_mode & S_IXUSR))
 	{
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
-		mem_free();
 		ft_exit_gc(126);
 	}
 }
@@ -99,6 +96,5 @@ void	exec_command(t_mini *mini, char *path)
 	execve(path, mini->args, mini->data->env);
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(": execve error\n", 2);
-	mem_free();
 	ft_exit_gc(126);
 }

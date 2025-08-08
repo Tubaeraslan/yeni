@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 20:21:06 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:16:51 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 13:27:28 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	handle_outfile(t_mini *mini, char **tokens, int *i, int append)
 int	handle_heredoc(t_mini *mini, char **tokens, int *i)
 {
 	if (mini->heredoc_limiter)
-		free(mini->heredoc_limiter);
+		mini->heredoc_limiter=NULL;
 	mini->heredoc_limiter = mem_absorb(ft_strdup(tokens[*i + 1]));
 	if (mini->infile)
 	{

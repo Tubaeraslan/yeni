@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:39:45 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 12:54:36 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:10:13 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	handle_fork_error(t_mini *mini)
 {
 	(void)mini;
 	perror("fork");
-	mem_free();
 	ft_exit_gc(1);
 }
 

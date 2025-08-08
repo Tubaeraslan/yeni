@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:48:59 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/08 12:33:25 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 16:13:14 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_tokenizer
 	char		char_quote;
 	char		buffer[1024];
 	const char	*src;
+	int             pending_empty_token;
 }	t_tokenizer;
 
 typedef struct s_heredoc
@@ -108,7 +109,6 @@ int			syntax_error(t_mini *mini);
 int			check_pipe(char *input);
 void		parse_error(t_mini *mini, const char *msg);
 void		expand_variables(t_mini *mini);
-void		expand_pid(t_expand *ex);
 void		init_minishell(t_mini *mini, t_data *data, char **envp);
 void		reset_mini_for_new_command(t_mini *mini);
 int			read_varname(char *input, int *i, char *varname);

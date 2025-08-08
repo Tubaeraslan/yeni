@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:07:17 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/06 15:12:58 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:10:46 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	close_all_fds(t_mini *mini)
 void	exit_program(t_mini *mini, int exit_code)
 {
 	close_all_fds(mini);
-	mem_free();
 	rl_clear_history();
 	ft_exit_gc(exit_code);
 }

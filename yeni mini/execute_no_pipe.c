@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:07:42 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 12:58:54 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:55:59 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	execute_child_process(t_mini *mini)
 	char		*path;
 
 	if (mini->cmd[0] == '/'
-		|| (mini->cmd[0] == '.' && mini->cmd[1] == '/'))
+		|| (mini->cmd[0] == '.') || (mini->cmd[0] == '.' && mini->cmd[1] == '.'))
 		path = mem_absorb(ft_strdup(mini->cmd));
 	else
 		path = path_finder(mini->cmd, mini->data->env);

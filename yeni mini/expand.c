@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:43:10 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:03:47 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:49:13 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void	expand_variable_from_env(t_expand *ex, t_mini *mini)
 	if (ex->input[ex->i] == '?')
 	{
 		expand_exit_code(ex, mini);
-		return ;
-	}
-	else if (ex->input[ex->i] == '$')
-	{
-		expand_pid(ex);
 		return ;
 	}
 	len = read_varname(ex->input, &(ex->i), varname);

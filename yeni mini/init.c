@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:06:07 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:39:51 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 16:15:25 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	init_minishell_part2(t_mini *mini)
 	mini->tokenizer.j = 0;
 	mini->tokenizer.inside_quotes = 0;
 	mini->tokenizer.char_quote = '\0';
+	mini->tokenizer.pending_empty_token = 0;
 	mini->token_count = 0;
 	mini->next = NULL;
 	mini->is_pipe = 0;
