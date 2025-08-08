@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:48:59 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/08 17:32:00 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 18:58:13 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ typedef struct s_mini
 }	t_mini;
 
 void		*mem_malloc(size_t size);
-void		*mem_calloc(size_t type, size_t size);
-void		*mem_realloc(void *old_data, size_t new_size);
 void		mem_free(void);
 void		*mem_absorb(void *addr);
 t_mem_block	*mem_add_new_block(void *data, size_t size);

@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:19:37 by yzeybek           #+#    #+#             */
-/*   Updated: 2025/08/07 15:23:15 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 19:00:57 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,5 @@ size_t	mem_find_size(void *data)
 		else
 			break ;
 	}
-	return (res);
-}
-
-void	*mem_malloc(size_t size)
-{
-	void	*res;
-
-	res = malloc(size);
-	if (!res)
-		return (mem_exit());
-	mem_add_new_block(res, size);
 	return (res);
 }

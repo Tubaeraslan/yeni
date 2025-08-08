@@ -1,5 +1,5 @@
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 CC = cc
 LDFLAGS = -lreadline
 
@@ -30,15 +30,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-leaks: 
-	@echo "Running Walgring..."
-	@valgrind --leak-check=full		\
-			--show-leak-kinds=all	\
-			--track-origins=yes		\
-			--track-fds=yes			\
-			--verbose				\
-			--suppressions=valgrind.supp	\
-			./$(NAME)
 
 .PHONY: all clean fclean re
