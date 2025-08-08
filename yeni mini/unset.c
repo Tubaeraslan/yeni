@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:02:06 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 13:49:46 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:37:21 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void	ft_unset(t_mini *mini)
 		}
 		i++;
 	}
+	mini->last_exit_code = 0;
 }

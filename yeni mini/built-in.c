@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:54:55 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 12:50:29 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:33:18 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	execute_b(t_mini *mini)
 	if (ft_strncmp(cmd_name, "echo", 5) == 0)
 		ft_echo(mini);
 	else if (ft_strncmp(cmd_name, "pwd", 4) == 0)
-		ft_pwd();
+		ft_pwd(mini);
 	else if (ft_strncmp(cmd_name, "env", 4) == 0)
 		ft_env(mini);
 	else if (ft_strncmp(cmd_name, "exit", 5) == 0)

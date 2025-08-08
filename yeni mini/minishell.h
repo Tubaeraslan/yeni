@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:48:59 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/07 14:21:00 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:33:25 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void		ft_cd(t_mini *mini);
 int			get_oldpwd(t_mini *mini, char *cwd, size_t c_size, char **oldpwd);
 int			get_path(t_mini *mini, char **path);
 void		update_env(char ***envp, char *arg);
-void		ft_pwd(void);
+void		ft_pwd(t_mini *mini);
 void		ft_env(t_mini *mini);
 void		ft_echo(t_mini *mini);
 void		ft_export(t_mini *mini);
