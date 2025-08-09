@@ -6,7 +6,7 @@
 /*   By: teraslan <teraslan@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:46:18 by teraslan          #+#    #+#             */
-/*   Updated: 2025/08/08 17:23:00 by teraslan         ###   ########.fr       */
+/*   Updated: 2025/08/09 12:16:42 by teraslan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static int	read_and_prepare_input(t_mini *mini)
 		printf("exit\n");
 		return (1);
 	}
-	add_history(input);
+	if (input[0] != '\0')
+		add_history(input);
 	mini->input = mem_absorb(ft_strdup(input));
 	free(input);
 	return (0);
